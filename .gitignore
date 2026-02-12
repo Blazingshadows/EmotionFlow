@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.pyre/
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+training-env/
+
+# Environment variables
+.env
+.env.*
+
+# Spotipy cache
+.spotipy_cache
+.cache
+
+# Logs and sessions
+*.log
+session_logs/
+
+# Model/checkpoint artifacts
+*.pth
+checkpoints/
+checkpoints_affectnet_yolo/
+
+# Datasets
+FER2013/
+YOLO_format/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Misc
+*.tmp
+*.bak
+#log files
+jpg 
+jpeg
+png 
