@@ -1,0 +1,2209 @@
+{
+  "session_id": "20260212_110207",
+  "user_id": null,
+  "start_time": "2026-02-12T11:02:07.670459",
+  "end_time": "2026-02-12T11:02:42.237477",
+  "emotion_history": [
+    {
+      "emotion": "Neutral",
+      "confidence": 0.35731059312820435,
+      "timestamp": "2026-02-12T11:02:08.501631"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6686288714408875,
+      "timestamp": "2026-02-12T11:02:08.562725"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.3842196762561798,
+      "timestamp": "2026-02-12T11:02:08.619404"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6316028833389282,
+      "timestamp": "2026-02-12T11:02:08.668462"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9043048689664142,
+      "timestamp": "2026-02-12T11:02:08.724662"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9289850548117472,
+      "timestamp": "2026-02-12T11:02:08.774733"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9408422314719933,
+      "timestamp": "2026-02-12T11:02:08.831067"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9508157036968012,
+      "timestamp": "2026-02-12T11:02:08.881584"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9585874586541413,
+      "timestamp": "2026-02-12T11:02:08.940449"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.963856654621653,
+      "timestamp": "2026-02-12T11:02:08.998508"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9683647546241752,
+      "timestamp": "2026-02-12T11:02:09.058332"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9709231174372978,
+      "timestamp": "2026-02-12T11:02:09.106988"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9738226514990649,
+      "timestamp": "2026-02-12T11:02:09.160633"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9764192230437544,
+      "timestamp": "2026-02-12T11:02:09.213159"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9783080341678604,
+      "timestamp": "2026-02-12T11:02:09.267287"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9226152759275479,
+      "timestamp": "2026-02-12T11:02:09.318826"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9232334379424467,
+      "timestamp": "2026-02-12T11:02:09.372308"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9362336735996168,
+      "timestamp": "2026-02-12T11:02:09.429335"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.935124237098065,
+      "timestamp": "2026-02-12T11:02:09.489718"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9364949894462508,
+      "timestamp": "2026-02-12T11:02:09.541827"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8762110241896938,
+      "timestamp": "2026-02-12T11:02:09.596988"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8789643352383303,
+      "timestamp": "2026-02-12T11:02:09.651101"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8785952014796564,
+      "timestamp": "2026-02-12T11:02:09.707412"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8591580180380032,
+      "timestamp": "2026-02-12T11:02:09.764601"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8590664288423507,
+      "timestamp": "2026-02-12T11:02:09.820537"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8594359831379347,
+      "timestamp": "2026-02-12T11:02:09.869428"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8616402081241211,
+      "timestamp": "2026-02-12T11:02:09.917939"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8603416093049415,
+      "timestamp": "2026-02-12T11:02:09.967166"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8022296966683742,
+      "timestamp": "2026-02-12T11:02:10.019211"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.7994199178611632,
+      "timestamp": "2026-02-12T11:02:10.064392"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8057538011128268,
+      "timestamp": "2026-02-12T11:02:10.115702"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.7445095792015163,
+      "timestamp": "2026-02-12T11:02:10.161702"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6876707352075925,
+      "timestamp": "2026-02-12T11:02:10.211912"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6315785560198466,
+      "timestamp": "2026-02-12T11:02:10.255918"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5648668569366833,
+      "timestamp": "2026-02-12T11:02:10.307189"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6375533987812511,
+      "timestamp": "2026-02-12T11:02:10.354781"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6299113992803868,
+      "timestamp": "2026-02-12T11:02:10.410190"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.555706633652684,
+      "timestamp": "2026-02-12T11:02:10.457435"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5257496304722686,
+      "timestamp": "2026-02-12T11:02:10.506159"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.5456540063186929,
+      "timestamp": "2026-02-12T11:02:10.549151"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.6283894134678965,
+      "timestamp": "2026-02-12T11:02:10.595928"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7047294327252047,
+      "timestamp": "2026-02-12T11:02:10.642433"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7803546741916811,
+      "timestamp": "2026-02-12T11:02:10.692022"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7824445314137957,
+      "timestamp": "2026-02-12T11:02:10.743540"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8517381987255738,
+      "timestamp": "2026-02-12T11:02:10.792545"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8435478846819453,
+      "timestamp": "2026-02-12T11:02:10.839069"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7853349487779931,
+      "timestamp": "2026-02-12T11:02:10.890135"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7746155489996288,
+      "timestamp": "2026-02-12T11:02:10.934659"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7785726175070341,
+      "timestamp": "2026-02-12T11:02:10.982172"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.777876108604407,
+      "timestamp": "2026-02-12T11:02:11.028687"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8603254545268764,
+      "timestamp": "2026-02-12T11:02:11.074680"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9376306591142534,
+      "timestamp": "2026-02-12T11:02:11.120078"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9329926028866601,
+      "timestamp": "2026-02-12T11:02:11.171013"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9279754421040814,
+      "timestamp": "2026-02-12T11:02:11.216568"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9282114613273807,
+      "timestamp": "2026-02-12T11:02:11.263562"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8065832043556992,
+      "timestamp": "2026-02-12T11:02:11.307074"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8075267694424736,
+      "timestamp": "2026-02-12T11:02:11.361079"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7924083951217078,
+      "timestamp": "2026-02-12T11:02:11.409609"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7047869135794347,
+      "timestamp": "2026-02-12T11:02:11.458592"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.6986732476128094,
+      "timestamp": "2026-02-12T11:02:11.503490"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7181702832675796,
+      "timestamp": "2026-02-12T11:02:11.549977"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7947371579467555,
+      "timestamp": "2026-02-12T11:02:11.596329"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8097564476370727,
+      "timestamp": "2026-02-12T11:02:11.647741"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8082770695796722,
+      "timestamp": "2026-02-12T11:02:11.694743"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7372467734125657,
+      "timestamp": "2026-02-12T11:02:11.743155"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7375148924985663,
+      "timestamp": "2026-02-12T11:02:11.788306"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.6404033202882669,
+      "timestamp": "2026-02-12T11:02:11.838361"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.6631650342165323,
+      "timestamp": "2026-02-12T11:02:11.884741"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.683958341376386,
+      "timestamp": "2026-02-12T11:02:11.936138"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.6020074734990037,
+      "timestamp": "2026-02-12T11:02:11.983858"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.6169877720065683,
+      "timestamp": "2026-02-12T11:02:12.033911"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.540532625726964,
+      "timestamp": "2026-02-12T11:02:12.079913"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.49586996733082067,
+      "timestamp": "2026-02-12T11:02:12.131566"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.48995713170820726,
+      "timestamp": "2026-02-12T11:02:12.179563"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.4694485847022057,
+      "timestamp": "2026-02-12T11:02:12.237078"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.516918854089154,
+      "timestamp": "2026-02-12T11:02:12.284094"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5962220958527563,
+      "timestamp": "2026-02-12T11:02:12.336217"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6637282740339175,
+      "timestamp": "2026-02-12T11:02:12.385447"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.7106720782247349,
+      "timestamp": "2026-02-12T11:02:12.440957"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6949730244264554,
+      "timestamp": "2026-02-12T11:02:12.485973"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.7595580105866888,
+      "timestamp": "2026-02-12T11:02:12.537345"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.7366563294253897,
+      "timestamp": "2026-02-12T11:02:12.582346"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.7397884546904092,
+      "timestamp": "2026-02-12T11:02:12.637880"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8243583791672429,
+      "timestamp": "2026-02-12T11:02:12.686877"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8174407555026852,
+      "timestamp": "2026-02-12T11:02:12.738927"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8139058834539719,
+      "timestamp": "2026-02-12T11:02:12.785943"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.7300640549573474,
+      "timestamp": "2026-02-12T11:02:12.840477"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6484939629319683,
+      "timestamp": "2026-02-12T11:02:12.887645"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6548040370476506,
+      "timestamp": "2026-02-12T11:02:12.940432"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6883009068874084,
+      "timestamp": "2026-02-12T11:02:12.988449"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6123058894496733,
+      "timestamp": "2026-02-12T11:02:13.036960"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5702031498462913,
+      "timestamp": "2026-02-12T11:02:13.087971"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5654131461316088,
+      "timestamp": "2026-02-12T11:02:13.138098"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5901047612071394,
+      "timestamp": "2026-02-12T11:02:13.185844"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6167897081553355,
+      "timestamp": "2026-02-12T11:02:13.240360"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6091685206264744,
+      "timestamp": "2026-02-12T11:02:13.288198"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6102762072369383,
+      "timestamp": "2026-02-12T11:02:13.338712"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6675848436521873,
+      "timestamp": "2026-02-12T11:02:13.388714"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6630341157038149,
+      "timestamp": "2026-02-12T11:02:13.438229"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6429598191874589,
+      "timestamp": "2026-02-12T11:02:13.489173"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6189931657944788,
+      "timestamp": "2026-02-12T11:02:13.540321"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.7217198055601199,
+      "timestamp": "2026-02-12T11:02:13.586337"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8120797532807615,
+      "timestamp": "2026-02-12T11:02:13.637869"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9086486677964718,
+      "timestamp": "2026-02-12T11:02:13.684870"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9104582343611693,
+      "timestamp": "2026-02-12T11:02:13.736941"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9179721483945604,
+      "timestamp": "2026-02-12T11:02:13.785934"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9178611906119575,
+      "timestamp": "2026-02-12T11:02:13.836450"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.918310713549814,
+      "timestamp": "2026-02-12T11:02:13.880452"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9190181724217351,
+      "timestamp": "2026-02-12T11:02:13.929966"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9123216290830511,
+      "timestamp": "2026-02-12T11:02:13.976967"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8219029515779354,
+      "timestamp": "2026-02-12T11:02:14.028349"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.833695251850463,
+      "timestamp": "2026-02-12T11:02:14.076696"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8432701373876401,
+      "timestamp": "2026-02-12T11:02:14.126213"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8426826948980773,
+      "timestamp": "2026-02-12T11:02:14.177247"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8424235879436245,
+      "timestamp": "2026-02-12T11:02:14.229772"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8532326152675431,
+      "timestamp": "2026-02-12T11:02:14.275773"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8521283810862602,
+      "timestamp": "2026-02-12T11:02:14.327287"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8533327455734689,
+      "timestamp": "2026-02-12T11:02:14.379777"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8512059707257661,
+      "timestamp": "2026-02-12T11:02:14.429307"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.852875508108531,
+      "timestamp": "2026-02-12T11:02:14.479303"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8523203935852163,
+      "timestamp": "2026-02-12T11:02:14.531323"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8599377559964457,
+      "timestamp": "2026-02-12T11:02:14.579423"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8622905733108617,
+      "timestamp": "2026-02-12T11:02:14.634953"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8538980630909162,
+      "timestamp": "2026-02-12T11:02:14.682466"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.86270386358674,
+      "timestamp": "2026-02-12T11:02:14.732975"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9340883209948626,
+      "timestamp": "2026-02-12T11:02:14.782859"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9351699755957446,
+      "timestamp": "2026-02-12T11:02:14.835766"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9319551259451593,
+      "timestamp": "2026-02-12T11:02:14.882772"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9328432114318813,
+      "timestamp": "2026-02-12T11:02:14.936373"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9329815764418286,
+      "timestamp": "2026-02-12T11:02:14.987640"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9345627004837908,
+      "timestamp": "2026-02-12T11:02:15.050420"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9353781493595,
+      "timestamp": "2026-02-12T11:02:15.095425"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8606764580750234,
+      "timestamp": "2026-02-12T11:02:15.143978"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8375620473321405,
+      "timestamp": "2026-02-12T11:02:15.189467"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8364072811127012,
+      "timestamp": "2026-02-12T11:02:15.240983"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9004115095357654,
+      "timestamp": "2026-02-12T11:02:15.288825"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9003703363486879,
+      "timestamp": "2026-02-12T11:02:15.342198"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8922016292542476,
+      "timestamp": "2026-02-12T11:02:15.390234"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8075571297116929,
+      "timestamp": "2026-02-12T11:02:15.444103"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.725647792762066,
+      "timestamp": "2026-02-12T11:02:15.490505"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.7170391533670578,
+      "timestamp": "2026-02-12T11:02:15.543026"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6257869819633644,
+      "timestamp": "2026-02-12T11:02:15.593356"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6558120387932275,
+      "timestamp": "2026-02-12T11:02:15.642258"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6266557259395081,
+      "timestamp": "2026-02-12T11:02:15.692126"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6465756753162942,
+      "timestamp": "2026-02-12T11:02:15.742642"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5522222917086466,
+      "timestamp": "2026-02-12T11:02:15.789651"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5070204822725135,
+      "timestamp": "2026-02-12T11:02:15.841161"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5652119047642764,
+      "timestamp": "2026-02-12T11:02:15.888161"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6128259589928082,
+      "timestamp": "2026-02-12T11:02:15.939268"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6178502511261671,
+      "timestamp": "2026-02-12T11:02:15.983676"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6518119697646712,
+      "timestamp": "2026-02-12T11:02:16.037185"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6664814478279696,
+      "timestamp": "2026-02-12T11:02:16.086193"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6163745540607316,
+      "timestamp": "2026-02-12T11:02:16.142045"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6229722687961042,
+      "timestamp": "2026-02-12T11:02:16.191870"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6267437226595489,
+      "timestamp": "2026-02-12T11:02:16.248818"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5542192145680864,
+      "timestamp": "2026-02-12T11:02:16.299875"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5576214692066574,
+      "timestamp": "2026-02-12T11:02:16.350101"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5539181686607668,
+      "timestamp": "2026-02-12T11:02:16.396547"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.587114983483835,
+      "timestamp": "2026-02-12T11:02:16.447428"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5234060548314629,
+      "timestamp": "2026-02-12T11:02:16.492659"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5573633360900648,
+      "timestamp": "2026-02-12T11:02:16.545203"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5143720379287374,
+      "timestamp": "2026-02-12T11:02:16.595753"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.5206009929825614,
+      "timestamp": "2026-02-12T11:02:16.653689"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.5815100826755153,
+      "timestamp": "2026-02-12T11:02:16.706269"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.6558113646231358,
+      "timestamp": "2026-02-12T11:02:16.758796"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7360674599427015,
+      "timestamp": "2026-02-12T11:02:16.811576"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8283229264804517,
+      "timestamp": "2026-02-12T11:02:16.863618"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8275731162317305,
+      "timestamp": "2026-02-12T11:02:16.921343"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8032650717035881,
+      "timestamp": "2026-02-12T11:02:16.979133"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8034117507806691,
+      "timestamp": "2026-02-12T11:02:17.031969"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7898957864845146,
+      "timestamp": "2026-02-12T11:02:17.087565"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7752865468632251,
+      "timestamp": "2026-02-12T11:02:17.140621"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8619043638210949,
+      "timestamp": "2026-02-12T11:02:17.196683"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9826060190950768,
+      "timestamp": "2026-02-12T11:02:17.249341"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8641425657584326,
+      "timestamp": "2026-02-12T11:02:17.304262"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8636419360826805,
+      "timestamp": "2026-02-12T11:02:17.363340"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8619368849552497,
+      "timestamp": "2026-02-12T11:02:17.422943"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8519133661177859,
+      "timestamp": "2026-02-12T11:02:17.475891"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8405750270004344,
+      "timestamp": "2026-02-12T11:02:17.533481"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8273082791585548,
+      "timestamp": "2026-02-12T11:02:17.583346"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8119832438688436,
+      "timestamp": "2026-02-12T11:02:17.640297"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7887863900559658,
+      "timestamp": "2026-02-12T11:02:17.697782"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7877362612160929,
+      "timestamp": "2026-02-12T11:02:17.754743"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8343692044530308,
+      "timestamp": "2026-02-12T11:02:17.804670"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8314427671190184,
+      "timestamp": "2026-02-12T11:02:17.865556"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.6911760432629966,
+      "timestamp": "2026-02-12T11:02:17.913671"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.6912877961425009,
+      "timestamp": "2026-02-12T11:02:17.968644"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7149811707275089,
+      "timestamp": "2026-02-12T11:02:18.024404"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7203517927102413,
+      "timestamp": "2026-02-12T11:02:18.081700"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8469929582002197,
+      "timestamp": "2026-02-12T11:02:18.126762"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8476668201496077,
+      "timestamp": "2026-02-12T11:02:18.183715"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8474573758440197,
+      "timestamp": "2026-02-12T11:02:18.237063"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8597116888282424,
+      "timestamp": "2026-02-12T11:02:18.291217"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8701458100100546,
+      "timestamp": "2026-02-12T11:02:18.345286"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8772184089045556,
+      "timestamp": "2026-02-12T11:02:18.398634"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8836178736623146,
+      "timestamp": "2026-02-12T11:02:18.449784"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8132038882830481,
+      "timestamp": "2026-02-12T11:02:18.504361"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8032593674067308,
+      "timestamp": "2026-02-12T11:02:18.551586"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8016794818937558,
+      "timestamp": "2026-02-12T11:02:18.600098"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8025789993286175,
+      "timestamp": "2026-02-12T11:02:18.647667"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9089067013193624,
+      "timestamp": "2026-02-12T11:02:18.698230"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9141964966250362,
+      "timestamp": "2026-02-12T11:02:18.759387"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8361420995828162,
+      "timestamp": "2026-02-12T11:02:18.810356"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8233963384915751,
+      "timestamp": "2026-02-12T11:02:18.860309"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7332808768004458,
+      "timestamp": "2026-02-12T11:02:18.920294"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7482534257953569,
+      "timestamp": "2026-02-12T11:02:18.973393"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7486589751838137,
+      "timestamp": "2026-02-12T11:02:19.030758"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7459709174097974,
+      "timestamp": "2026-02-12T11:02:19.087839"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7423722423649057,
+      "timestamp": "2026-02-12T11:02:19.145856"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.745755769310491,
+      "timestamp": "2026-02-12T11:02:19.192305"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7464747036370294,
+      "timestamp": "2026-02-12T11:02:19.245577"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.820876417993064,
+      "timestamp": "2026-02-12T11:02:19.300141"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8314885467783588,
+      "timestamp": "2026-02-12T11:02:19.356547"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8200864971377463,
+      "timestamp": "2026-02-12T11:02:19.407434"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8217051231488794,
+      "timestamp": "2026-02-12T11:02:19.463940"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8326853686648138,
+      "timestamp": "2026-02-12T11:02:19.515317"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8219099569053095,
+      "timestamp": "2026-02-12T11:02:19.573852"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9087980000263873,
+      "timestamp": "2026-02-12T11:02:19.686620"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.815741999805257,
+      "timestamp": "2026-02-12T11:02:19.750634"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8994986331363772,
+      "timestamp": "2026-02-12T11:02:19.801940"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8997602687923667,
+      "timestamp": "2026-02-12T11:02:19.861639"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8934496988132772,
+      "timestamp": "2026-02-12T11:02:19.913239"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8864672855758133,
+      "timestamp": "2026-02-12T11:02:19.968466"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8870643792054349,
+      "timestamp": "2026-02-12T11:02:20.017943"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8864736592133022,
+      "timestamp": "2026-02-12T11:02:20.075346"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8787992874501823,
+      "timestamp": "2026-02-12T11:02:20.125035"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7806926192399825,
+      "timestamp": "2026-02-12T11:02:20.178865"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7524510477953555,
+      "timestamp": "2026-02-12T11:02:20.225025"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7531556222938857,
+      "timestamp": "2026-02-12T11:02:20.279473"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7518691166694201,
+      "timestamp": "2026-02-12T11:02:20.330974"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7531680678825396,
+      "timestamp": "2026-02-12T11:02:20.394005"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7534402801480199,
+      "timestamp": "2026-02-12T11:02:20.444636"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7524788598512809,
+      "timestamp": "2026-02-12T11:02:20.502808"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.867271937570848,
+      "timestamp": "2026-02-12T11:02:20.551849"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8654625508554178,
+      "timestamp": "2026-02-12T11:02:20.610113"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.865873329265197,
+      "timestamp": "2026-02-12T11:02:20.658692"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.87550848379575,
+      "timestamp": "2026-02-12T11:02:20.706160"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8755517955344748,
+      "timestamp": "2026-02-12T11:02:20.750239"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8746798472302383,
+      "timestamp": "2026-02-12T11:02:20.798324"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8747754857225566,
+      "timestamp": "2026-02-12T11:02:20.853718"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.874676031095785,
+      "timestamp": "2026-02-12T11:02:20.914498"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9873060277811687,
+      "timestamp": "2026-02-12T11:02:20.971824"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.031103"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.087081"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.153432"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.226069"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.291766"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.343039"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.397148"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.452542"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.509118"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.564149"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.621483"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.675769"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.735473"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.785649"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.844344"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.905882"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:21.964861"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:22.025156"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:22.083187"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:22.127518"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:22.184782"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:22.237974"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:22.293123"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:22.343857"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:22.405401"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:22.463078"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:22.521615"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:22.577736"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:22.632828"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:22.682368"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:22.741529"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:22.800976"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9662021050118828,
+      "timestamp": "2026-02-12T11:02:22.855957"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9658327244626713,
+      "timestamp": "2026-02-12T11:02:22.906964"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9609100556282542,
+      "timestamp": "2026-02-12T11:02:22.960240"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9657636909142281,
+      "timestamp": "2026-02-12T11:02:23.016079"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9697464159385285,
+      "timestamp": "2026-02-12T11:02:23.072727"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9728495718273689,
+      "timestamp": "2026-02-12T11:02:23.134332"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9430443112033049,
+      "timestamp": "2026-02-12T11:02:23.190743"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9480787549006955,
+      "timestamp": "2026-02-12T11:02:23.246023"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9523105739153457,
+      "timestamp": "2026-02-12T11:02:23.299527"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9564704759723446,
+      "timestamp": "2026-02-12T11:02:23.356168"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9598295274804418,
+      "timestamp": "2026-02-12T11:02:23.411309"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9624111545126602,
+      "timestamp": "2026-02-12T11:02:23.473882"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9631024928638101,
+      "timestamp": "2026-02-12T11:02:23.529253"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9654484130638964,
+      "timestamp": "2026-02-12T11:02:23.588795"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.965625687036612,
+      "timestamp": "2026-02-12T11:02:23.643017"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9830331350787307,
+      "timestamp": "2026-02-12T11:02:23.705567"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9830332042878689,
+      "timestamp": "2026-02-12T11:02:23.765508"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.983899853925427,
+      "timestamp": "2026-02-12T11:02:23.822425"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9839365562397191,
+      "timestamp": "2026-02-12T11:02:23.878550"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8985071308173808,
+      "timestamp": "2026-02-12T11:02:23.935579"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.897927894664835,
+      "timestamp": "2026-02-12T11:02:23.990668"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9183879280158712,
+      "timestamp": "2026-02-12T11:02:24.049403"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.919584551309148,
+      "timestamp": "2026-02-12T11:02:24.110184"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9155589768397059,
+      "timestamp": "2026-02-12T11:02:24.166860"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9151973056800303,
+      "timestamp": "2026-02-12T11:02:24.218712"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9147986496175388,
+      "timestamp": "2026-02-12T11:02:24.274736"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.914814058421483,
+      "timestamp": "2026-02-12T11:02:24.327965"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9088596631733578,
+      "timestamp": "2026-02-12T11:02:24.385270"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9031612168836167,
+      "timestamp": "2026-02-12T11:02:24.438123"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9032578429082003,
+      "timestamp": "2026-02-12T11:02:24.494104"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8971069885219014,
+      "timestamp": "2026-02-12T11:02:24.547255"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8970777508767906,
+      "timestamp": "2026-02-12T11:02:24.599367"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8906026253896469,
+      "timestamp": "2026-02-12T11:02:24.653986"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8649532270428545,
+      "timestamp": "2026-02-12T11:02:24.714674"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9825420909224658,
+      "timestamp": "2026-02-12T11:02:24.766632"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9825457056286732,
+      "timestamp": "2026-02-12T11:02:24.825322"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9825224935603776,
+      "timestamp": "2026-02-12T11:02:24.879452"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9821565162986472,
+      "timestamp": "2026-02-12T11:02:24.935144"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9821585860315217,
+      "timestamp": "2026-02-12T11:02:24.994278"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9820034852560139,
+      "timestamp": "2026-02-12T11:02:25.052004"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9818942894177263,
+      "timestamp": "2026-02-12T11:02:25.106088"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.980432621956907,
+      "timestamp": "2026-02-12T11:02:25.161697"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9820425225190054,
+      "timestamp": "2026-02-12T11:02:25.226135"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9820508002480621,
+      "timestamp": "2026-02-12T11:02:25.284050"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8511764696464139,
+      "timestamp": "2026-02-12T11:02:25.338473"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7555447152971567,
+      "timestamp": "2026-02-12T11:02:25.399633"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.6671993990706051,
+      "timestamp": "2026-02-12T11:02:25.447226"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.6013911394604671,
+      "timestamp": "2026-02-12T11:02:25.497342"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.5483584093049286,
+      "timestamp": "2026-02-12T11:02:25.553935"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5277648058529343,
+      "timestamp": "2026-02-12T11:02:25.611037"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5732380887935669,
+      "timestamp": "2026-02-12T11:02:25.667972"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6520846836952713,
+      "timestamp": "2026-02-12T11:02:25.726440"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.7104027126970994,
+      "timestamp": "2026-02-12T11:02:25.793747"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.7456805197061557,
+      "timestamp": "2026-02-12T11:02:25.846594"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8183342296155639,
+      "timestamp": "2026-02-12T11:02:25.900108"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8924747260146831,
+      "timestamp": "2026-02-12T11:02:25.959789"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9152576719003388,
+      "timestamp": "2026-02-12T11:02:26.015381"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9851004261335303,
+      "timestamp": "2026-02-12T11:02:26.080498"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:26.139788"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9286102756274165,
+      "timestamp": "2026-02-12T11:02:26.199998"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9274674578371483,
+      "timestamp": "2026-02-12T11:02:26.276417"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.927351110489202,
+      "timestamp": "2026-02-12T11:02:26.336159"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9279555003227984,
+      "timestamp": "2026-02-12T11:02:26.394997"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9272123567823404,
+      "timestamp": "2026-02-12T11:02:26.454492"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9228371445393498,
+      "timestamp": "2026-02-12T11:02:26.506930"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9271354557830709,
+      "timestamp": "2026-02-12T11:02:26.560689"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9278549826737317,
+      "timestamp": "2026-02-12T11:02:26.615309"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9320590837693205,
+      "timestamp": "2026-02-12T11:02:26.676413"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9326404581145158,
+      "timestamp": "2026-02-12T11:02:26.735520"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9331129769176734,
+      "timestamp": "2026-02-12T11:02:26.801583"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9322550882393419,
+      "timestamp": "2026-02-12T11:02:26.861169"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.930612628585427,
+      "timestamp": "2026-02-12T11:02:26.920720"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9306547308643716,
+      "timestamp": "2026-02-12T11:02:27.561118"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9299450952877466,
+      "timestamp": "2026-02-12T11:02:28.071387"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.9265315655198056,
+      "timestamp": "2026-02-12T11:02:28.330052"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.859999078618324,
+      "timestamp": "2026-02-12T11:02:28.725817"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8528571619080003,
+      "timestamp": "2026-02-12T11:02:28.982528"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.8525580158023568,
+      "timestamp": "2026-02-12T11:02:29.315172"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.7707359848087955,
+      "timestamp": "2026-02-12T11:02:29.758398"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.7846971487871981,
+      "timestamp": "2026-02-12T11:02:29.985201"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.7098884701266566,
+      "timestamp": "2026-02-12T11:02:30.218870"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.6469374386887589,
+      "timestamp": "2026-02-12T11:02:30.419691"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5758495119585296,
+      "timestamp": "2026-02-12T11:02:30.602371"
+    },
+    {
+      "emotion": "Happy",
+      "confidence": 0.5062193262892756,
+      "timestamp": "2026-02-12T11:02:30.697990"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.5598390538327553,
+      "timestamp": "2026-02-12T11:02:30.946613"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.6241439181697976,
+      "timestamp": "2026-02-12T11:02:31.218542"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.687975482470473,
+      "timestamp": "2026-02-12T11:02:31.403096"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.766372880375812,
+      "timestamp": "2026-02-12T11:02:31.599441"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8252030590433833,
+      "timestamp": "2026-02-12T11:02:31.712083"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8252184800135538,
+      "timestamp": "2026-02-12T11:02:31.903553"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8262229565214566,
+      "timestamp": "2026-02-12T11:02:32.091823"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8494588504321872,
+      "timestamp": "2026-02-12T11:02:32.199032"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9194611221014733,
+      "timestamp": "2026-02-12T11:02:32.390464"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9132169005993312,
+      "timestamp": "2026-02-12T11:02:32.484707"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:32.697279"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:32.890286"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:32.982427"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:33.189599"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:33.293934"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:33.478902"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:33.668660"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:33.849371"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:34.099187"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:34.252397"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9891777310105411,
+      "timestamp": "2026-02-12T11:02:34.633793"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9891031258446492,
+      "timestamp": "2026-02-12T11:02:34.842311"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9889811023754346,
+      "timestamp": "2026-02-12T11:02:35.155533"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9890120509716158,
+      "timestamp": "2026-02-12T11:02:35.352603"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9898169776324715,
+      "timestamp": "2026-02-12T11:02:35.459925"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9899100331978056,
+      "timestamp": "2026-02-12T11:02:35.642104"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9899061533355971,
+      "timestamp": "2026-02-12T11:02:35.906032"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9900504156831266,
+      "timestamp": "2026-02-12T11:02:36.127103"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9899411773986126,
+      "timestamp": "2026-02-12T11:02:36.313616"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9891063844139347,
+      "timestamp": "2026-02-12T11:02:36.462808"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9897882292870467,
+      "timestamp": "2026-02-12T11:02:36.642125"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9904801416441982,
+      "timestamp": "2026-02-12T11:02:36.829603"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9904647966770942,
+      "timestamp": "2026-02-12T11:02:36.933908"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.989847355889505,
+      "timestamp": "2026-02-12T11:02:37.135718"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9898487068058328,
+      "timestamp": "2026-02-12T11:02:37.238059"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:37.425978"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:37.541463"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:37.729796"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:37.825297"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:38.019640"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:38.118861"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:38.315594"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:38.420648"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:38.605520"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 1.0,
+      "timestamp": "2026-02-12T11:02:38.804847"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9784510216625087,
+      "timestamp": "2026-02-12T11:02:38.912420"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9450931502893809,
+      "timestamp": "2026-02-12T11:02:39.276267"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.936715461094334,
+      "timestamp": "2026-02-12T11:02:39.509415"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9364484682818307,
+      "timestamp": "2026-02-12T11:02:39.914273"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9361057742299465,
+      "timestamp": "2026-02-12T11:02:40.282867"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9236797705893733,
+      "timestamp": "2026-02-12T11:02:40.438710"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9342957998714887,
+      "timestamp": "2026-02-12T11:02:40.519413"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9421884485523818,
+      "timestamp": "2026-02-12T11:02:40.569822"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9485368964557763,
+      "timestamp": "2026-02-12T11:02:40.619506"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.954052012468761,
+      "timestamp": "2026-02-12T11:02:40.671542"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9583830172929245,
+      "timestamp": "2026-02-12T11:02:40.723669"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9585834466178487,
+      "timestamp": "2026-02-12T11:02:40.773542"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8237971410813153,
+      "timestamp": "2026-02-12T11:02:40.826165"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8244848027065662,
+      "timestamp": "2026-02-12T11:02:40.870672"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8079887920620518,
+      "timestamp": "2026-02-12T11:02:40.921672"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8293646303922773,
+      "timestamp": "2026-02-12T11:02:40.978283"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8667920962429921,
+      "timestamp": "2026-02-12T11:02:41.032303"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.878464887360174,
+      "timestamp": "2026-02-12T11:02:41.097058"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8882502932485102,
+      "timestamp": "2026-02-12T11:02:41.154672"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8962046681229628,
+      "timestamp": "2026-02-12T11:02:41.215615"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.9028607732881556,
+      "timestamp": "2026-02-12T11:02:41.274496"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8962990735806625,
+      "timestamp": "2026-02-12T11:02:41.333108"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8970081338102165,
+      "timestamp": "2026-02-12T11:02:41.393635"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.8087303261674952,
+      "timestamp": "2026-02-12T11:02:41.450591"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7244317858490684,
+      "timestamp": "2026-02-12T11:02:41.508584"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7257556092464791,
+      "timestamp": "2026-02-12T11:02:41.560133"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7252139266802605,
+      "timestamp": "2026-02-12T11:02:41.618126"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.7068808449669256,
+      "timestamp": "2026-02-12T11:02:41.672147"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.6333022930707565,
+      "timestamp": "2026-02-12T11:02:41.731157"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.5622677858082091,
+      "timestamp": "2026-02-12T11:02:41.791059"
+    },
+    {
+      "emotion": "Angry",
+      "confidence": 0.5456474621491737,
+      "timestamp": "2026-02-12T11:02:41.847433"
+    }
+  ],
+  "music_history": [],
+  "events": [
+    {
+      "type": "music_state_change",
+      "data": {
+        "new_state": "Upbeat"
+      },
+      "timestamp": "2026-02-12T11:02:15.288825"
+    },
+    {
+      "type": "music_state_change",
+      "data": {
+        "new_state": "Intense"
+      },
+      "timestamp": "2026-02-12T11:02:20.330974"
+    },
+    {
+      "type": "music_state_change",
+      "data": {
+        "new_state": "Upbeat"
+      },
+      "timestamp": "2026-02-12T11:02:28.725817"
+    },
+    {
+      "type": "music_state_change",
+      "data": {
+        "new_state": "Intense"
+      },
+      "timestamp": "2026-02-12T11:02:34.099187"
+    }
+  ]
+}
