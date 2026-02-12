@@ -142,12 +142,14 @@ class MainWindow(QWidget):
 
         self.session_manager.end_session()
 
+        # Create session playlist and show summary
         if self.session_events:
-            self._save_session_summary(self.session_events)
+            playlist_id = self.rolling_player.finalize_session()
+            self._save_session_summary(self.session_events, playlist_id)
 
         self.start_btn.setEnabled(True)
         self.stop_btn.setEnabled(False)
-        self.info_label.setText("Session stopped.")
+        self.info_label.setText("Session stopped. Check Spotify for your emotion mix playlist!")
 
     # -------------------------
     # Frame Loop
@@ -234,39 +236,81 @@ class MainWindow(QWidget):
         self.video_label.setPixmap(pix)
 
         state_text = self.last_music_state.value if self.last_music_state else "-"
+        queue_status = self.rolling_player.get_queue_status()
+        queue_info = f" | Queue: {queue_status.get('queue_size', 0)} songs" if queue_status.get('queue_size', 0) > 0 else ""
+        
         self.info_label.setText(
             f"Emotion: {stable_emotion}   "
             f"Confidence: {conf:.2f}   "
             f"State: {state_text}   "
-            f"FPS: {self.fps:.1f}"
+            f"FPS: {self.fps:.1f}{queue_info}"
         )
+        
+        # Check if queue needs refilling
+        self.rolling_player.check_and_refill_queue()
 
     # -------------------------
     # Session Summary Plot
     # -------------------------
-    def _save_session_summary(self, events):
+    def _save_session_summary(self, events, playlist_id: str = ""):
+        """
+        Generate and save session summary with emotion distribution
+        and link to created Spotify playlist.
+        
+        Args:
+            events: List of emotion events from session
+            playlist_id: ID of created Spotify playlist
+        """
         emotions = [e["emotion"] for e in events if e["emotion"]]
         counts = Counter(emotions)
 
         labels = list(counts.keys())
         values = [counts[k] for k in labels]
 
-        plt.figure(figsize=(6, 4))
-        plt.bar(labels, values)
-        plt.xlabel("Emotion")
-        plt.ylabel("Count")
-        plt.title("Session Emotion Distribution")
-        plt.tight_layout()
+        # Create emotion distribution chart
+        fig, ax = plt.subplots(figsize=(10, 5))
+        bars = ax.bar(labels, values, color='steelblue', alpha=0.8)
+        ax.set_xlabel("Emotion", fontsize=12, fontweight='bold')
+        ax.set_ylabel("Frequency", fontsize=12, fontweight='bold')
+        ax.set_title("Session Emotion Distribution", fontsize=14, fontweight='bold')
+        
+        # Add value labels on bars
+        for bar in bars:
+            height = bar.get_height()
+            ax.text(bar.get_x() + bar.get_width()/2., height,
+                   f'{int(height)}',
+                   ha='center', va='bottom', fontweight='bold')
+        
+        # Add queue statistics
+        queue_summary = self.rolling_player.spotify.song_queue.get_session_summary()
+        songs_played = queue_summary.get("total_songs_played", 0)
+        total_duration = queue_summary.get("total_duration_seconds", 0) / 60.0  # Convert to minutes
+        
+        # Add info text
+        info_text = f"Total Songs: {songs_played} | Duration: {total_duration:.1f} min"
+        if playlist_id:
+            info_text += f" | Playlist created!"
+        
+        fig.text(0.5, 0.02, info_text, ha='center', fontsize=10, style='italic')
+        
+        plt.tight_layout(rect=[0, 0.05, 1, 1])
 
         outpath = f"session_summary_{int(time.time())}.png"
-        plt.savefig(outpath, dpi=200)
+        plt.savefig(outpath, dpi=200, bbox_inches='tight')
         plt.close()
 
-        QMessageBox.information(
-            self,
-            "Session Summary Saved",
-            f"Session summary saved to:\n{outpath}"
-        )
+        # Show summary message
+        summary_msg = f"📊 Session Summary Saved\n\n"
+        summary_msg += f"Emotions detected: {len(counts)}\n"
+        summary_msg += f"Total songs played: {songs_played}\n"
+        summary_msg += f"Duration: {total_duration:.1f} minutes\n\n"
+        summary_msg += f"Chart saved: {outpath}"
+        
+        if playlist_id:
+            summary_msg += f"\n\n✅ Spotify playlist created with {songs_played} songs!\n"
+            summary_msg += "Check your Spotify library for the emotion mix playlist."
+        
+        QMessageBox.information(self, "Session Summary", summary_msg)
 
     # -------------------------
     # Cleanup
