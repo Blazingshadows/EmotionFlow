@@ -510,4 +510,3 @@ Total: 12 tracks, 31:35 duration
 
 ---
 
-**Built with ❤️ using Python, PyTorch, and Spotify API**
