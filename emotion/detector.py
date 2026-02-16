@@ -19,8 +19,8 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 EMOTION_LABELS = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
 
 SMOOTH_WINDOW = 15
-CONF_THRESHOLD = 0.45  # Increased from 0.35 to require higher confidence
-MIN_FRAMES_FOR_SMOOTH = 5  # Increased from 3 to need more consistent frames
+CONF_THRESHOLD = 0.65  # Requires higher confidence to reduce false positives
+MIN_FRAMES_FOR_SMOOTH = 10  # Need more consistent frames for stable emotion detection
 
 HAAR_SCALE = 1.1
 HAAR_NEIGHBORS = 5  # Increased for better face detection

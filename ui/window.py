@@ -114,24 +114,34 @@ class MainWindow(QWidget):
     # Session Controls
     # -------------------------
     def start_session(self):
+        print("\n[UI] ▶ START SESSION clicked")
+        
         cam_idx = auto_camera_index(max_indices=4)
         if cam_idx is None:
+            print("[UI] ✗ No camera found")
             QMessageBox.warning(self, "No camera", "No working camera detected.")
             return
+        
+        print(f"[UI] ✓ Camera found at index {cam_idx}")
 
         self.cap = cv2.VideoCapture(cam_idx, cv2.CAP_DSHOW)
         if not self.cap.isOpened():
+            print("[UI] ✗ Failed to open camera")
             QMessageBox.warning(self, "Camera open failed", "Could not open camera.")
             return
+
+        print("[UI] ✓ Camera opened successfully")
 
         self.session_manager.start_session()
         self.analytics = SessionAnalytics()
         self.session_events = []
 
         self.timer.start(16)
+        print("[UI] ✓ Frame timer started (60 FPS)")
+        
         self.start_btn.setEnabled(False)
         self.stop_btn.setEnabled(True)
-        self.info_label.setText("Session started...")
+        self.info_label.setText("Session started... Point camera at face for emotion detection")
 
     def stop_session(self):
         self.timer.stop()
@@ -158,96 +168,103 @@ class MainWindow(QWidget):
         if self.cap is None:
             return
 
-        ret, frame = self.cap.read()
-        if not ret:
-            return
+        try:
+            ret, frame = self.cap.read()
+            if not ret:
+                print("[UI] Camera read failed")
+                return
 
-        # FPS calculation
-        now = time.time()
-        dt = now - self.last_ts if self.last_ts else 0.001
-        self.fps = 0.9 * self.fps + 0.1 * (1.0 / dt)
-        self.last_ts = now
+            # FPS calculation
+            now = time.time()
+            dt = now - self.last_ts if self.last_ts else 0.001
+            self.fps = 0.9 * self.fps + 0.1 * (1.0 / dt)
+            self.last_ts = now
 
-        # Gesture detection
-        gesture_detected, gesture_conf = self.gesture_detector.detect_yo_gesture(frame)
-        if gesture_detected:
-            detected_emotion = "Rock"
-            conf = gesture_conf
-            annotated = frame.copy()
-        else:
-            # Emotion detection
-            label, conf, annotated = self.detector.predict_frame(frame)
-
-            # Confidence gating
-            if not label or conf < CONFIDENCE_THRESHOLD:
-                detected_emotion = self.last_valid_emotion
+            # Gesture detection
+            gesture_detected, gesture_conf = self.gesture_detector.detect_yo_gesture(frame)
+            if gesture_detected:
+                detected_emotion = "Rock"
+                conf = gesture_conf
+                annotated = frame.copy()
             else:
-                detected_emotion = label
-                self.last_valid_emotion = label
+                # Emotion detection
+                label, conf, annotated = self.detector.predict_frame(frame)
 
-        # Stability
-        stable_emotion, stable_duration = self.stability.update(detected_emotion)
+                # Confidence gating
+                if not label or conf < CONFIDENCE_THRESHOLD:
+                    detected_emotion = self.last_valid_emotion
+                else:
+                    detected_emotion = label
+                    self.last_valid_emotion = label
 
-        # Extra bias prevention
-        if stable_emotion in ["Sad", "Fear"] and conf < 0.6:
-            stable_emotion = "Neutral"
+            # Stability
+            stable_emotion, stable_duration = self.stability.update(detected_emotion)
 
-        # Music State Logic
-        changed, music_state = self.state_controller.update(
-            stable_emotion,
-            stable_duration
-        )
+            # Extra bias prevention
+            if stable_emotion in ["Sad", "Fear"] and conf < 0.6:
+                stable_emotion = "Neutral"
 
-        if changed:
-            playlist_name = self.spotify.get_playlist_name(music_state)
-            print(f"[STATE CHANGE] {stable_emotion} → {music_state.value} | Playlist: {playlist_name}")
-            self.rolling_player.on_state_change(music_state)
-            self.last_music_state = music_state
-
-            self.session_manager.log_event(
-                "music_state_change",
-                {"new_state": music_state.value}
+            # Music State Logic
+            changed, music_state = self.state_controller.update(
+                stable_emotion,
+                stable_duration
             )
 
-        # Session logging
-        self.session_manager.log_emotion(stable_emotion, conf)
-        self.analytics.update(stable_emotion, self.last_music_state)
+            if changed:
+                playlist_name = self.spotify.get_playlist_name(music_state)
+                print(f"[STATE CHANGE] {stable_emotion} → {music_state.value} | Playlist: {playlist_name}")
+                self.rolling_player.on_state_change(music_state)
+                self.last_music_state = music_state
 
-        self.session_events.append({
-            "emotion": stable_emotion,
-            "confidence": conf
-        })
+                self.session_manager.log_event(
+                    "music_state_change",
+                    {"new_state": music_state.value}
+                )
 
-        # UI update
-        h, w, ch = annotated.shape
-        bytes_per_line = ch * w
-        qt_img = QImage(
-            annotated.data, w, h,
-            bytes_per_line,
-            QImage.Format.Format_BGR888
-        )
+            # Session logging
+            self.session_manager.log_emotion(stable_emotion, conf)
+            self.analytics.update(stable_emotion, self.last_music_state)
 
-        pix = QPixmap.fromImage(qt_img).scaled(
-            self.video_label.width(),
-            self.video_label.height(),
-            Qt.AspectRatioMode.KeepAspectRatio
-        )
+            self.session_events.append({
+                "emotion": stable_emotion,
+                "confidence": conf
+            })
 
-        self.video_label.setPixmap(pix)
+            # UI update
+            h, w, ch = annotated.shape
+            bytes_per_line = ch * w
+            qt_img = QImage(
+                annotated.data, w, h,
+                bytes_per_line,
+                QImage.Format.Format_BGR888
+            )
 
-        state_text = self.last_music_state.value if self.last_music_state else "-"
-        queue_status = self.rolling_player.get_queue_status()
-        queue_info = f" | Queue: {queue_status.get('queue_size', 0)} songs" if queue_status.get('queue_size', 0) > 0 else ""
-        
-        self.info_label.setText(
-            f"Emotion: {stable_emotion}   "
-            f"Confidence: {conf:.2f}   "
-            f"State: {state_text}   "
-            f"FPS: {self.fps:.1f}{queue_info}"
-        )
-        
-        # Check if queue needs refilling
-        self.rolling_player.check_and_refill_queue()
+            pix = QPixmap.fromImage(qt_img).scaled(
+                self.video_label.width(),
+                self.video_label.height(),
+                Qt.AspectRatioMode.KeepAspectRatio
+            )
+
+            self.video_label.setPixmap(pix)
+
+            state_text = self.last_music_state.value if self.last_music_state else "-"
+            queue_status = self.rolling_player.get_queue_status()
+            queue_info = f" | Queue: {queue_status.get('queue_size', 0)} songs" if queue_status.get('queue_size', 0) > 0 else ""
+            
+            self.info_label.setText(
+                f"Emotion: {stable_emotion}   "
+                f"Confidence: {conf:.2f}   "
+                f"State: {state_text}   "
+                f"FPS: {self.fps:.1f}{queue_info}"
+            )
+            
+            # Check if queue needs refilling
+            self.rolling_player.check_and_refill_queue()
+            
+        except Exception as e:
+            print(f"[UI] Frame error: {type(e).__name__}: {e}")
+            import traceback
+            traceback.print_exc()
 
     # -------------------------
     # Session Summary Plot

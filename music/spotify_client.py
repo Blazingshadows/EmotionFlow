@@ -11,27 +11,39 @@ load_dotenv()
 
 class SpotifyClient:
     def __init__(self):
+        print("[Spotify] Initializing SpotifyClient...")
+        
         # Cache file in project root
         cache_path = os.path.join(os.getcwd(), ".spotipy_cache")
+        print(f"[Spotify] Cache path: {cache_path}")
         
-        self.sp = spotipy.Spotify(
-            auth_manager=SpotifyOAuth(
-                client_id=os.getenv('SPOTIPY_CLIENT_ID'),
-                client_secret=os.getenv('SPOTIPY_CLIENT_SECRET'),
-                redirect_uri=os.getenv('SPOTIPY_REDIRECT_URI', 'http://127.0.0.1:8888/callback'),
-                scope="user-modify-playback-state user-read-playback-state playlist-modify-public playlist-modify-private",
-                cache_path=cache_path,
-                show_dialog=True
+        try:
+            self.sp = spotipy.Spotify(
+                auth_manager=SpotifyOAuth(
+                    client_id=os.getenv('SPOTIPY_CLIENT_ID'),
+                    client_secret=os.getenv('SPOTIPY_CLIENT_SECRET'),
+                    redirect_uri=os.getenv('SPOTIPY_REDIRECT_URI', 'http://127.0.0.1:8888/callback'),
+                    scope="user-modify-playback-state user-read-playback-state playlist-modify-public playlist-modify-private",
+                    cache_path=cache_path,
+                    show_dialog=True
+                )
             )
-        )
+            print("[Spotify] ✓ Authentication successful")
+        except Exception as e:
+            print(f"[Spotify] ✗ Auth error: {e}")
+            raise
 
         self.playlists = {
-            MusicState.CALM: "spotify:playlist:37i9dQZF1EIfTmpqlGn32s",
+            MusicState.CALM: "spotify:playlist:0W018UoOiTF8ehaUiSzBlz",
             MusicState.UPBEAT: "spotify:playlist:37i9dQZF1EVJHK7Q1TBABQ",
-            MusicState.INTENSE: "spotify:playlist:37i9dQZF1EIdHZWT31d1QN",
-            MusicState.BACKGROUND: "spotify:playlist:37i9dQZF1EIdNttkh5bOjS",
-            MusicState.ROCK: "spotify:playlist:37i9dQZF1EIf9QdS3bOrgZ"
+            MusicState.INTENSE: "spotify:playlist:5dZIuUEvUXMrqRzfZrTJBF",
+            MusicState.BACKGROUND: "spotify:playlist:5jYQ4O9Ii3tQcSbJMtVrk8",
+            MusicState.ROCK: "spotify:playlist:37i9dQZF1DX2IvZJK5xwFt"
         }
+        
+        # Track failed playlist IDs to avoid repeated API calls
+        self._failed_playlists = set()
+        self._last_retry_time = {}
 
         self.playlist_names = {
             MusicState.CALM: "Calm",
@@ -47,31 +59,6 @@ class SpotifyClient:
 
     def get_playlist_name(self, state):
         return self.playlist_names.get(state, state.value)
-
-    def _get_device(self):
-        """Get active device or first available device"""
-        try:
-            devices = self.sp.devices()
-            device_list = devices.get("devices", [])
-            
-            if not device_list:
-                print("[Spotify] ✗ No devices found. Open Spotify and start playing something once.")
-                return None
-            
-            # Try to find active device
-            active_device = next((d for d in device_list if d.get("is_active")), None)
-            target_device = active_device or device_list[0]
-            
-            device_id = target_device.get("id")
-            if device_id and not active_device:
-                print(f"[Spotify] Activating device: {target_device.get('name')}")
-                self.sp.transfer_playback(device_id=device_id, force_play=True)
-            
-            self.current_device_id = device_id
-            return device_id
-        except Exception as e:
-            print(f"[Spotify] Error getting device: {e}")
-            return None
     
     def _get_user_id(self):
         """Get current user ID"""
@@ -87,7 +74,7 @@ class SpotifyClient:
     def search_songs_by_state(self, state: MusicState, count: int = 5) -> list:
         """
         Search for songs matching a music state using the seed playlists.
-        Uses audio features to score and filter songs.
+        Falls back to keyword search if playlist fails.
         
         Args:
             state: MusicState to search for
@@ -96,39 +83,48 @@ class SpotifyClient:
         Returns:
             List of Song objects
         """
+        import time
+        
+        # First try playlist-based search
+        songs = self._search_playlist(state, count)
+        
+        # If playlist fails, fall back to keyword search
+        if not songs:
+            print(f"[Spotify] Fallback: searching by keyword for {state.value}...")
+            songs = self._search_by_keyword(state, count)
+        
+        return songs
+    
+    def _search_playlist(self, state: MusicState, count: int) -> list:
+        """Search songs from a specific playlist"""
         try:
             playlist_uri = self.playlists.get(state)
             if not playlist_uri:
                 return []
             
-            # Get tracks from the seed playlist
+            # Check if this playlist has failed before (avoid repeated API errors)
             playlist_id = playlist_uri.split(":")[-1]
-            results = self.sp.playlist_tracks(playlist_id, limit=50)
+            if playlist_id in self._failed_playlists:
+                # Wait before retrying failed playlists
+                last_retry = self._last_retry_time.get(playlist_id, 0)
+                time_since_retry = time.time() - last_retry
+                if time_since_retry < 60:
+                    return []
+            
+            # Get tracks from the seed playlist
+            results = self.sp.playlist_tracks(playlist_id, limit=count)
             tracks = results.get("items", [])
             
-            # Get audio features for tracks
-            track_ids = [t["track"]["id"] for t in tracks if t["track"]]
-            if not track_ids:
+            if not tracks:
                 return []
             
-            # Fetch audio features
-            features_data = self.sp.audio_features(track_ids)
-            
-            # Score songs by how well they match the state
-            scored_songs = []
-            for i, track_obj in enumerate(tracks):
+            # Convert tracks to Song objects
+            songs = []
+            for track_obj in tracks[:count]:
                 if not track_obj.get("track"):
                     continue
                 
                 track = track_obj["track"]
-                features = features_data[i] if i < len(features_data) else None
-                
-                if not features:
-                    continue
-                
-                # Calculate match score
-                score = calculate_feature_score(features, state)
-                
                 song = Song(
                     track_id=track.get("id"),
                     name=track.get("name"),
@@ -136,18 +132,63 @@ class SpotifyClient:
                     duration_ms=track.get("duration_ms", 0),
                     uri=track.get("uri")
                 )
-                
-                scored_songs.append((song, score))
+                songs.append(song)
             
-            # Sort by score and return top N
-            scored_songs.sort(key=lambda x: x[1], reverse=True)
-            result = [song for song, score in scored_songs[:count]]
-            
-            print(f"[Spotify] Found {len(result)} songs for {state.value}")
-            return result
+            print(f"[Spotify] Found {len(songs)} songs from {state.value} playlist")
+            return songs
             
         except Exception as e:
-            print(f"[Spotify] Error searching songs: {e}")
+            playlist_id = self.playlists.get(state, "").split(":")[-1]
+            error_str = str(e).lower()
+            
+            # Track permanent errors
+            if "404" in error_str or "not found" in error_str:
+                self._failed_playlists.add(playlist_id)
+                self._last_retry_time[playlist_id] = time.time()
+                print(f"[Spotify] Playlist not found: {state.value}")
+            else:
+                print(f"[Spotify] Playlist error: {e}")
+            
+            return []
+    
+    def _search_by_keyword(self, state: MusicState, count: int) -> list:
+        """Fallback: search for songs by keyword/mood"""
+        try:
+            # Map emotions to search keywords
+            keywords = {
+                MusicState.CALM: "calm peaceful relaxing",
+                MusicState.UPBEAT: "upbeat happy energetic pop",
+                MusicState.INTENSE: "intense powerful rock metal",
+                MusicState.BACKGROUND: "background ambient chill lofi",
+                MusicState.ROCK: "rock alternative hard rock"
+            }
+            
+            query = keywords.get(state, state.value.lower())
+            print(f"[Spotify] Searching: '{query}'")
+            
+            results = self.sp.search(q=query, type='track', limit=count)
+            tracks = results.get('tracks', {}).get('items', [])
+            
+            if not tracks:
+                return []
+            
+            # Convert to Song objects
+            songs = []
+            for track in tracks[:count]:
+                song = Song(
+                    track_id=track.get("id"),
+                    name=track.get("name"),
+                    artist=", ".join([a.get("name", "Unknown") for a in track.get("artists", [])]),
+                    duration_ms=track.get("duration_ms", 0),
+                    uri=track.get("uri")
+                )
+                songs.append(song)
+            
+            print(f"[Spotify] Found {len(songs)} songs via search")
+            return songs
+            
+        except Exception as e:
+            print(f"[Spotify] Search error: {e}")
             return []
     
     def queue_songs_for_state(self, state: MusicState, count: int = 5) -> None:
@@ -185,38 +226,108 @@ class SpotifyClient:
     def play_state(self, state: MusicState) -> None:
         """
         Start playback for a music state with dynamic song queueing.
+        Runs in background thread to avoid blocking UI.
+        
+        Args:
+            state: MusicState to start playing
+        """
+        import threading
+        
+        # Run in background thread to avoid blocking
+        thread = threading.Thread(target=self._play_state_worker, args=(state,), daemon=True)
+        thread.start()
+    
+    def _play_state_worker(self, state: MusicState) -> None:
+        """
+        Worker thread for starting playback.
         
         Args:
             state: MusicState to start playing
         """
         try:
-            print(f"[Spotify] Starting playback for {state.value}...")
+            print(f"\n[Spotify] ▶ Starting playback for {state.value}...")
             
-            # Get device
-            device_id = self._get_device()
+            # Get device with timeout
+            device_id = self._get_device_safe()
             if not device_id:
+                print(f"[Spotify] ✗ NO DEVICE FOUND")
+                print(f"[Spotify] → Make sure Spotify app is OPEN and playing")
+                print(f"[Spotify] → Or select a device in Spotify settings")
                 return
             
-            # Get first song
+            print(f"[Spotify] ✓ Device found: {device_id}")
+            
+            # Get songs
             songs = self.search_songs_by_state(state, count=5)
             if not songs:
-                print(f"[Spotify] No songs found for {state.value}")
+                print(f"[Spotify] ✗ NO SONGS FOUND for {state.value}")
                 return
+            
+            print(f"[Spotify] ✓ Got {len(songs)} songs")
             
             # Start playback with first song
             first_song = songs[0]
-            self.sp.start_playback(device_id=device_id, uris=[first_song.uri])
-            print(f"[Spotify] ✓ Now playing: {first_song}")
+            print(f"[Spotify] ▶ Playing: {first_song.name} by {first_song.artist}")
+            print(f"[Spotify] ▶ URI: {first_song.uri}")
+            
+            try:
+                self.sp.start_playback(device_id=device_id, uris=[first_song.uri])
+                print(f"[Spotify] ✓ PLAYBACK STARTED!")
+            except Exception as e:
+                print(f"[Spotify] ✗ PLAYBACK FAILED: {e}")
+                return
             
             # Queue remaining songs
             if len(songs) > 1:
+                print(f"[Spotify] ▶ Queueing {len(songs)-1} more songs...")
                 self._add_queued_songs_to_playback(songs[1:])
             
             # Add all songs to queue manager
             self.song_queue.add_songs(songs, state)
+            print(f"[Spotify] ✓ Queue manager updated")
             
         except Exception as e:
-            print(f"[Spotify] ✗ Error: {type(e).__name__}: {e}")
+            print(f"[Spotify] ✗ PLAYBACK ERROR: {type(e).__name__}: {e}")
+    
+    def _get_device_safe(self):
+        """
+        Get active device with error handling.
+        Returns device_id or None
+        """
+        try:
+            devices = self.sp.devices()
+            device_list = devices.get("devices", [])
+            
+            if not device_list:
+                print("[Spotify] ✗ NO DEVICES FOUND")
+                print("[Spotify] → Open Spotify app first")
+                print("[Spotify] → Or check Settings > Apps > Connect devices")
+                return None
+            
+            print(f"[Spotify] Found {len(device_list)} device(s):")
+            for i, d in enumerate(device_list):
+                active = "✓ ACTIVE" if d.get("is_active") else ""
+                print(f"  {i+1}. {d.get('name')} ({d.get('type')}) {active}")
+            
+            # Try to find active device
+            active_device = next((d for d in device_list if d.get("is_active")), None)
+            target_device = active_device or device_list[0]
+            
+            device_id = target_device.get("id")
+            device_name = target_device.get("name", "Unknown")
+            
+            if device_id and not active_device:
+                print(f"[Spotify] → Activating: {device_name}")
+                try:
+                    self.sp.transfer_playback(device_id=device_id, force_play=True)
+                except Exception as e:
+                    print(f"[Spotify] Warning: Could not activate device: {e}")
+            
+            self.current_device_id = device_id
+            return device_id
+        except Exception as e:
+            print(f"[Spotify] Error getting device: {e}")
+            return None
 
     def pause(self):
         try:

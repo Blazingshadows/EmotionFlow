@@ -17,7 +17,10 @@ class RollingPlayer:
         self.auto_mode = True
         self.current_state = None
         self.last_state_change_time = 0
+        self.last_queue_refill_time = 0
         self.min_queue_threshold = 2  # Queue more songs when < 2 remain
+        self.refill_cooldown = 5  # Don't refill more than once per 5 seconds
+        self.is_playing = False  # Track playback state
         
     def on_state_change(self, state: MusicState) -> None:
         """
@@ -47,7 +50,7 @@ class RollingPlayer:
     
     def _queue_for_state(self, state: MusicState) -> None:
         """
-        Queue 2-5 songs for the given emotion state.
+        Queue 2-5 songs for the given emotion state and start playback if needed.
         
         Args:
             state: MusicState to queue songs for
@@ -55,14 +58,39 @@ class RollingPlayer:
         try:
             print(f"\n[RollingPlayer] Queueing songs for {state.value}...")
             
-            # Queue 3-5 songs (random count for variety)
-            song_count = 3  # Could be random between 3-5
-            self.spotify.queue_songs_for_state(state, count=song_count)
+            # If not playing yet, start playback with this state
+            if not self.is_playing:
+                print(f"[RollingPlayer] Starting playback for {state.value}...")
+                self.spotify.play_state(state)
+                self.is_playing = True
+            else:
+                # Already playing, just queue more songs
+                song_count = 3  # Queue 3-5 songs
+                self.spotify.queue_songs_for_state(state, count=song_count)
             
             print(f"[RollingPlayer] Queue updated for {state.value}")
             
         except Exception as e:
             print(f"[RollingPlayer] Error queuing songs: {e}")
+    
+    def _refill_queue(self, state: MusicState) -> None:
+        """
+        Refill queue without starting playback (for existing playback).
+        
+        Args:
+            state: MusicState to queue songs for
+        """
+        try:
+            if not self.is_playing:
+                # If not playing, don't refill - wait for state change
+                return
+            
+            print(f"[RollingPlayer] Refilling queue for {state.value}...")
+            song_count = 3
+            self.spotify.queue_songs_for_state(state, count=song_count)
+            
+        except Exception as e:
+            print(f"[RollingPlayer] Error refilling queue: {e}")
     
     def check_and_refill_queue(self) -> None:
         """
@@ -70,10 +98,16 @@ class RollingPlayer:
         Call periodically from the main UI loop.
         """
         queue_size = self.spotify.song_queue.queue_size()
+        now = time.time()
+        
+        # Prevent rapid refill attempts (avoid hammering API)
+        if now - self.last_queue_refill_time < self.refill_cooldown:
+            return
         
         if queue_size < self.min_queue_threshold and self.current_state:
             print(f"[RollingPlayer] Queue low ({queue_size} songs), refilling...")
-            self._queue_for_state(self.current_state)
+            self.last_queue_refill_time = now
+            self._refill_queue(self.current_state)
     
     def set_auto_mode(self, enabled: bool) -> None:
         """

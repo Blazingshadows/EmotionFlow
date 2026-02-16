@@ -28,3 +28,4 @@ __all__ = [
     'SongQueue',
     'Song',
     'calculate_feature_score'
+]
