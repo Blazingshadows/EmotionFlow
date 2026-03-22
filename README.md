@@ -1,4 +1,4 @@
-# Emotion-Driven Music Recommendation System
+# EmotionFlow : An Affect Aware Music Recommendation System
 
 A real-time emotion detection and music recommendation system that analyzes facial expressions via webcam and dynamically curates Spotify playlists based on detected emotional states.
 
@@ -495,9 +495,6 @@ For questions or support, please open an issue on GitHub.
 
 ## 🎵 Demo
 
-Session summary example:
-
-![Session Analytics](md_export/VISUAL_SUMMARY.md)
 
 **Generated Playlist:**
 ```
