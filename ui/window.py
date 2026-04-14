@@ -14,13 +14,14 @@ from collections import Counter
 import cv2
 from PyQt6.QtWidgets import (
     QApplication, QWidget, QLabel, QPushButton,
-    QVBoxLayout, QHBoxLayout, QMessageBox
+    QVBoxLayout, QHBoxLayout, QMessageBox, QComboBox
 )
 from PyQt6.QtGui import QPixmap, QImage
 from PyQt6.QtCore import QTimer, Qt
 import matplotlib.pyplot as plt
 
 from emotion.detector import EmotionDetector
+from emotion.detector_mobilenet import EmotionDetectorMobileNet
 from emotion.stability import EmotionStability
 from music.spotify_client import SpotifyClient
 from music.state_controller import MusicStateController
@@ -66,6 +67,11 @@ class MainWindow(QWidget):
         self.info_label = QLabel("Emotion: -   Confidence: -   State: -   FPS: -")
         self.info_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
+        self.model_label = QLabel("Model:")
+        self.model_combo = QComboBox()
+        self.model_combo.addItem("MobileNetV2 (AffectNet)", "mobilenet")
+        self.model_combo.addItem("MiniXception (FER2013)", "minixception")
+
         self.start_btn = QPushButton("Start Session")
         self.start_btn.clicked.connect(self.start_session)
 
@@ -77,16 +83,31 @@ class MainWindow(QWidget):
         btn_layout.addWidget(self.start_btn)
         btn_layout.addWidget(self.stop_btn)
 
+        model_layout = QHBoxLayout()
+        model_layout.addWidget(self.model_label)
+        model_layout.addWidget(self.model_combo)
+        model_layout.addStretch(1)
+
         main_layout = QVBoxLayout()
         main_layout.addWidget(self.video_label, stretch=6)
+        main_layout.addLayout(model_layout)
         main_layout.addWidget(self.info_label, stretch=1)
         main_layout.addLayout(btn_layout)
 
         self.setLayout(main_layout)
 
         # ---------------- Core System ----------------
-        model_path = os.environ.get("MINIX_MODEL_PATH", "assets/minixception_torch.pth")
-        self.detector = EmotionDetector(model_path=model_path)
+        detector_backend = os.environ.get("EMOTION_MODEL_BACKEND", "mobilenet").lower()
+        self._loading_model = True
+        combo_idx = self.model_combo.findData(detector_backend)
+        if combo_idx >= 0:
+            self.model_combo.setCurrentIndex(combo_idx)
+
+        self.detector = None
+        self.detector_backend = ""
+        self._load_detector(detector_backend, show_message=False)
+        self.model_combo.currentIndexChanged.connect(self._on_model_changed)
+        self._loading_model = False
 
         self.stability = EmotionStability()
         self.spotify = SpotifyClient()
@@ -109,12 +130,57 @@ class MainWindow(QWidget):
         self.fps = 0.0
 
         self.session_events = []
+        self.is_shutting_down = False
+
+    def _make_detector(self, backend: str):
+        if backend == "mobilenet":
+            model_path = os.environ.get("MOBILENET_MODEL_PATH", "checkpoints_affectnet_yolo/mobilenetv2_best.pth")
+            detector = EmotionDetectorMobileNet(model_path=model_path)
+            print(f"[UI] Using MobileNet detector: {model_path}")
+            return detector
+
+        model_path = os.environ.get("MINIX_MODEL_PATH", "assets/minixception_torch.pth")
+        detector = EmotionDetector(model_path=model_path)
+        print(f"[UI] Using MiniXception detector: {model_path}")
+        return detector
+
+    def _load_detector(self, backend: str, show_message: bool = True):
+        fallback = "minixception" if backend == "mobilenet" else "mobilenet"
+        try:
+            self.detector = self._make_detector(backend)
+            self.detector_backend = backend
+        except Exception as e:
+            QMessageBox.warning(
+                self,
+                "Model Load Failed",
+                f"Failed to load {backend}: {e}\nTrying fallback model: {fallback}."
+            )
+            self.detector = self._make_detector(fallback)
+            self.detector_backend = fallback
+            fallback_idx = self.model_combo.findData(fallback)
+            if fallback_idx >= 0:
+                self.model_combo.setCurrentIndex(fallback_idx)
+
+        self.last_valid_emotion = "Neutral"
+        self.stability = EmotionStability()
+        if show_message:
+            mode_name = "MobileNetV2" if self.detector_backend == "mobilenet" else "MiniXception"
+            self.info_label.setText(f"Switched model to {mode_name}. Start/continue session for comparison.")
+
+    def _on_model_changed(self, _index: int):
+        if getattr(self, "_loading_model", False):
+            return
+        selected_backend = self.model_combo.currentData()
+        if not selected_backend or selected_backend == self.detector_backend:
+            return
+        self._load_detector(selected_backend, show_message=True)
 
     # -------------------------
     # Session Controls
     # -------------------------
     def start_session(self):
         print("\n[UI] ▶ START SESSION clicked")
+        self.is_shutting_down = False
         
         cam_idx = auto_camera_index(max_indices=4)
         if cam_idx is None:
@@ -144,6 +210,9 @@ class MainWindow(QWidget):
         self.info_label.setText("Session started... Point camera at face for emotion detection")
 
     def stop_session(self):
+        self._end_session(finalize_playlist=True, show_summary=True)
+
+    def _end_session(self, finalize_playlist: bool, show_summary: bool) -> None:
         self.timer.stop()
 
         if self.cap:
@@ -152,10 +221,20 @@ class MainWindow(QWidget):
 
         self.session_manager.end_session()
 
-        # Create session playlist and show summary
-        if self.session_events:
-            playlist_id = self.rolling_player.finalize_session()
-            self._save_session_summary(self.session_events, playlist_id)
+        if finalize_playlist:
+            played_songs = self.rolling_player.spotify.song_queue.get_played_songs()
+            if len(played_songs) >= 10:
+                playlist_id = self.rolling_player.finalize_session()
+                if show_summary:
+                    self._save_session_summary(self.session_events, playlist_id)
+            else:
+                print("[UI] Fewer than 10 songs were played this session; skipping playlist creation.")
+                if show_summary:
+                    QMessageBox.information(
+                        self,
+                        "Session Summary",
+                        "Fewer than 10 songs were played, so no Spotify playlist was created."
+                    )
 
         self.start_btn.setEnabled(True)
         self.stop_btn.setEnabled(False)
@@ -181,18 +260,46 @@ class MainWindow(QWidget):
             self.last_ts = now
 
             # Gesture detection
-            gesture_detected, gesture_conf = self.gesture_detector.detect_yo_gesture(frame)
-            if gesture_detected:
-                detected_emotion = "Rock"
+            gesture_label, gesture_conf = self.gesture_detector.detect_gesture(frame)
+            if gesture_label in {"Rock", "ThumbsUp", "ThumbsDown"}:
+                detected_emotion = {
+                    "Rock": "Rock",
+                    "ThumbsUp": "Happy",
+                    "ThumbsDown": "Sad",
+                }[gesture_label]
                 conf = gesture_conf
                 annotated = frame.copy()
+                cv2.putText(
+                    annotated,
+                    f"{gesture_label} ({gesture_conf:.2f})",
+                    (10, 30),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.8,
+                    (0, 200, 0),
+                    2,
+                )
             else:
                 # Emotion detection
-                label, conf, annotated = self.detector.predict_frame(frame)
+                if hasattr(self.detector, "predict_frame"):
+                    label, conf, annotated = self.detector.predict_frame(frame)
+                else:
+                    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                    label, conf = self.detector.predict(gray)
+                    annotated = frame.copy()
+                    if label:
+                        cv2.putText(
+                            annotated,
+                            f"{label} ({conf:.2f})",
+                            (10, 30),
+                            cv2.FONT_HERSHEY_SIMPLEX,
+                            0.8,
+                            (0, 200, 0),
+                            2,
+                        )
 
                 # Confidence gating
                 if not label or conf < CONFIDENCE_THRESHOLD:
-                    detected_emotion = self.last_valid_emotion
+                    detected_emotion = "Neutral"
                 else:
                     detected_emotion = label
                     self.last_valid_emotion = label
@@ -333,9 +440,8 @@ class MainWindow(QWidget):
     # Cleanup
     # -------------------------
     def closeEvent(self, event):
-        if self.cap and self.cap.isOpened():
-            self.cap.release()
-        self.session_manager.end_session()
+        self.is_shutting_down = True
+        self._end_session(finalize_playlist=False, show_summary=False)
         event.accept()
 
 
