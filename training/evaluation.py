@@ -4,9 +4,17 @@ import torch.nn as nn
 from torchvision import models, transforms
 from torch.utils.data import Dataset, DataLoader
 from PIL import Image
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import (
+    classification_report,
+    confusion_matrix,
+    precision_recall_fscore_support,
+    roc_auc_score,
+    roc_curve,
+)
+from sklearn.preprocessing import label_binarize
 import matplotlib.pyplot as plt
 import numpy as np
+import argparse
 
 
 # -------------------------------
@@ -104,10 +112,10 @@ def get_val_loader():
 # -------------------------------
 # MODEL LOADING
 # -------------------------------
-def load_model(device):
+def load_model(device, model_path=MODEL_PATH):
     model = models.mobilenet_v2(weights=None)
     model.classifier[1] = nn.Linear(model.last_channel, NUM_CLASSES)
-    state = torch.load(MODEL_PATH, map_location=device)
+    state = torch.load(model_path, map_location=device)
     model.load_state_dict(state)
     model.to(device)
     model.eval()
@@ -117,15 +125,16 @@ def load_model(device):
 # -------------------------------
 # EVALUATION
 # -------------------------------
-def evaluate():
+def evaluate(model_path=MODEL_PATH):
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print("Using device:", device)
 
     val_loader = get_val_loader()
-    model = load_model(device)
+    model = load_model(device, model_path=model_path)
 
     all_preds = []
     all_labels = []
+    all_probs = []
 
     correct = 0
     total = 0
@@ -135,13 +144,15 @@ def evaluate():
             imgs, labels = imgs.to(device), labels.to(device)
 
             outputs = model(imgs)
-            _, preds = torch.max(outputs, 1)
+            probs = torch.softmax(outputs, dim=1)
+            _, preds = torch.max(probs, 1)
 
             correct += (preds == labels).sum().item()
             total += labels.size(0)
 
             all_preds.extend(preds.cpu().numpy().tolist())
             all_labels.extend(labels.cpu().numpy().tolist())
+            all_probs.extend(probs.cpu().numpy().tolist())
 
     overall_acc = correct / total
     print(f"\nOverall Validation Accuracy: {overall_acc:.4f}")
@@ -155,9 +166,19 @@ def evaluate():
     )
     print(report)
 
+    macro_precision, macro_recall, macro_f1, _ = precision_recall_fscore_support(
+        all_labels, all_preds, average="macro", zero_division=0
+    )
+    print(f"Macro Precision: {macro_precision:.4f}")
+    print(f"Macro Recall:    {macro_recall:.4f}")
+    print(f"Macro F1:        {macro_f1:.4f}")
+
     # Save report to file
     with open("affectnet_classification_report.txt", "w") as f:
         f.write(f"Overall Accuracy: {overall_acc:.4f}\n\n")
+        f.write(f"Macro Precision: {macro_precision:.4f}\n")
+        f.write(f"Macro Recall: {macro_recall:.4f}\n")
+        f.write(f"Macro F1: {macro_f1:.4f}\n\n")
         f.write(report)
     print("Saved classification report to affectnet_classification_report.txt")
 
@@ -271,9 +292,40 @@ def evaluate():
     plt.tight_layout()
     plt.savefig("normalized_confusion_matrix.png", dpi=300, bbox_inches='tight')
     print("Saved normalized confusion matrix to normalized_confusion_matrix.png")
+
+    # -------------------------------
+    # Multi-class ROC-AUC (OvR)
+    # -------------------------------
+    y_true = label_binarize(all_labels, classes=list(range(NUM_CLASSES)))
+    y_score = np.array(all_probs)
+
+    try:
+        macro_roc_auc = roc_auc_score(y_true, y_score, average="macro", multi_class="ovr")
+        print(f"Macro ROC-AUC (OvR): {macro_roc_auc:.4f}")
+
+        fig, ax = plt.subplots(figsize=(10, 8))
+        for i, emotion in enumerate(EMOTIONS):
+            fpr, tpr, _ = roc_curve(y_true[:, i], y_score[:, i])
+            class_auc = roc_auc_score(y_true[:, i], y_score[:, i])
+            ax.plot(fpr, tpr, linewidth=2, label=f"{emotion} (AUC={class_auc:.3f})")
+
+        ax.plot([0, 1], [0, 1], "k--", linewidth=1)
+        ax.set_xlabel("False Positive Rate", fontsize=12)
+        ax.set_ylabel("True Positive Rate", fontsize=12)
+        ax.set_title("Multi-class ROC Curves (One-vs-Rest)", fontsize=14, fontweight='bold')
+        ax.legend(loc="lower right", fontsize=9)
+        ax.grid(True, alpha=0.3)
+        plt.tight_layout()
+        plt.savefig("affectnet_roc_curves.png", dpi=300, bbox_inches='tight')
+        print("Saved ROC curves to affectnet_roc_curves.png")
+    except ValueError as e:
+        print(f"Skipped ROC-AUC plot: {e}")
     
     plt.close('all')
 
 
 if __name__ == "__main__":
-    evaluate()
+    parser = argparse.ArgumentParser(description="Evaluate AffectNet MobileNetV2 model")
+    parser.add_argument("--model", default=MODEL_PATH, help="Path to model checkpoint (.pth)")
+    args = parser.parse_args()
+    evaluate(model_path=args.model)
