@@ -50,6 +50,22 @@ Start with these in order:
   - Audio feature scoring
   - Session timeline example
 
+- **[SYSTEM_ARCHITECTURE.md](SYSTEM_ARCHITECTURE.md)** ⭐ NEW
+  - Complete system architecture (7 detailed diagrams)
+  - Layered architecture view
+  - Module dependency graph
+  - Real-time processing pipeline
+  - Performance characteristics
+  - Technology stack overview
+
+- **[RESEARCH_PAPER_DIAGRAMS.md](RESEARCH_PAPER_DIAGRAMS.md)** ⭐ NEW
+  - Publication-ready diagrams (8 figures)
+  - Academic-style flowcharts
+  - Model architecture comparison
+  - Performance metrics visualization
+  - LaTeX integration guide
+  - Tables with system parameters
+
 ---
 
 ## 💾 Code Reference
