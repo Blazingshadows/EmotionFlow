@@ -1,5 +1,7 @@
 import os
 import random
+import time
+from collections import deque
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from music.music_state import MusicState
@@ -44,6 +46,10 @@ class SpotifyClient:
         # Track failed playlist IDs to avoid repeated API calls
         self._failed_playlists = set()
         self._last_retry_time = {}
+        self._recent_track_uris = deque(maxlen=500)
+        self._recent_track_uris_by_state = {
+            state: deque(maxlen=120) for state in self.playlists.keys()
+        }
 
         self.playlist_names = {
             MusicState.CALM: "Calm",
@@ -110,29 +116,70 @@ class SpotifyClient:
                 time_since_retry = time.time() - last_retry
                 if time_since_retry < 60:
                     return []
-            
-            # Get tracks from the seed playlist
-            results = self.sp.playlist_tracks(playlist_id, limit=count)
-            tracks = results.get("items", [])
-            
-            if not tracks:
+
+            playlist_meta = self.sp.playlist(playlist_id, fields="tracks.total")
+            total_tracks = int(playlist_meta.get("tracks", {}).get("total", 0))
+            if total_tracks <= 0:
                 return []
-            
-            # Convert tracks to Song objects
+
             songs = []
-            for track_obj in tracks[:count]:
-                if not track_obj.get("track"):
-                    continue
-                
-                track = track_obj["track"]
-                song = Song(
-                    track_id=track.get("id"),
-                    name=track.get("name"),
-                    artist=", ".join([a.get("name", "Unknown") for a in track.get("artists", [])]),
-                    duration_ms=track.get("duration_ms", 0),
-                    uri=track.get("uri")
-                )
-                songs.append(song)
+            attempts = 0
+            while len(songs) < count and attempts < 4:
+                fetch_size = min(80, total_tracks)
+                max_offset = max(0, total_tracks - fetch_size)
+                offset = random.randint(0, max_offset) if max_offset > 0 else 0
+
+                results = self.sp.playlist_tracks(playlist_id, limit=fetch_size, offset=offset)
+                tracks = results.get("items", [])
+                random.shuffle(tracks)
+
+                for track_obj in tracks:
+                    if len(songs) >= count:
+                        break
+                    if not track_obj.get("track"):
+                        continue
+
+                    track = track_obj["track"]
+                    uri = track.get("uri")
+                    if not uri:
+                        continue
+                    if uri in self._recent_track_uris:
+                        continue
+                    if uri in self._recent_track_uris_by_state.get(state, []):
+                        continue
+
+                    song = Song(
+                        track_id=track.get("id"),
+                        name=track.get("name"),
+                        artist=", ".join([a.get("name", "Unknown") for a in track.get("artists", [])]),
+                        duration_ms=track.get("duration_ms", 0),
+                        uri=uri
+                    )
+                    songs.append(song)
+
+                attempts += 1
+
+            # If filtering was too strict, top up from latest sampled tracks.
+            if len(songs) < count:
+                fallback = self.sp.playlist_tracks(playlist_id, limit=min(50, total_tracks), offset=0)
+                for track_obj in fallback.get("items", []):
+                    if len(songs) >= count:
+                        break
+                    track = track_obj.get("track")
+                    if not track:
+                        continue
+                    uri = track.get("uri")
+                    if not uri or any(existing.uri == uri for existing in songs):
+                        continue
+                    songs.append(
+                        Song(
+                            track_id=track.get("id"),
+                            name=track.get("name"),
+                            artist=", ".join([a.get("name", "Unknown") for a in track.get("artists", [])]),
+                            duration_ms=track.get("duration_ms", 0),
+                            uri=uri,
+                        )
+                    )
             
             print(f"[Spotify] Found {len(songs)} songs from {state.value} playlist")
             return songs
@@ -166,7 +213,8 @@ class SpotifyClient:
             query = keywords.get(state, state.value.lower())
             print(f"[Spotify] Searching: '{query}'")
             
-            results = self.sp.search(q=query, type='track', limit=count)
+            offset = random.randint(0, 150)
+            results = self.sp.search(q=query, type='track', limit=50, offset=offset)
             tracks = results.get('tracks', {}).get('items', [])
             
             if not tracks:
@@ -174,15 +222,42 @@ class SpotifyClient:
             
             # Convert to Song objects
             songs = []
-            for track in tracks[:count]:
+            random.shuffle(tracks)
+            for track in tracks:
+                if len(songs) >= count:
+                    break
+                uri = track.get("uri")
+                if not uri:
+                    continue
+                if uri in self._recent_track_uris:
+                    continue
+                if uri in self._recent_track_uris_by_state.get(state, []):
+                    continue
                 song = Song(
                     track_id=track.get("id"),
                     name=track.get("name"),
                     artist=", ".join([a.get("name", "Unknown") for a in track.get("artists", [])]),
                     duration_ms=track.get("duration_ms", 0),
-                    uri=track.get("uri")
+                    uri=uri
                 )
                 songs.append(song)
+
+            if len(songs) < count:
+                for track in tracks:
+                    if len(songs) >= count:
+                        break
+                    uri = track.get("uri")
+                    if not uri or any(existing.uri == uri for existing in songs):
+                        continue
+                    songs.append(
+                        Song(
+                            track_id=track.get("id"),
+                            name=track.get("name"),
+                            artist=", ".join([a.get("name", "Unknown") for a in track.get("artists", [])]),
+                            duration_ms=track.get("duration_ms", 0),
+                            uri=uri,
+                        )
+                    )
             
             print(f"[Spotify] Found {len(songs)} songs via search")
             return songs
@@ -203,8 +278,17 @@ class SpotifyClient:
         songs = self.search_songs_by_state(state, count=count)
         
         if songs:
+            self._remember_recent_songs(songs, state)
             self.song_queue.add_songs(songs, state)
             self._add_queued_songs_to_playback(songs)
+
+    def _remember_recent_songs(self, songs: list, state: MusicState) -> None:
+        state_recent = self._recent_track_uris_by_state.get(state)
+        for song in songs:
+            if song.uri:
+                self._recent_track_uris.append(song.uri)
+                if state_recent is not None:
+                    state_recent.append(song.uri)
     
     def _add_queued_songs_to_playback(self, songs: list) -> None:
         """
@@ -283,6 +367,7 @@ class SpotifyClient:
                 self._add_queued_songs_to_playback(songs[1:])
             
             # Add all songs to queue manager
+            self._remember_recent_songs(songs, state)
             self.song_queue.add_songs(songs, state)
             print(f"[Spotify] ✓ Queue manager updated")
             
